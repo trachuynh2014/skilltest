@@ -9,7 +9,6 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const apiRouter = require("./api"); // Import the API router
-const setupSocketIO = require("./socketio"); // Import the Socket.IO setup module
 
 const PORT = process.env.PORT || 3000;
 
@@ -33,9 +32,6 @@ app.use("/api", apiRouter);
 // Serve static files from the "public" directory as a client for sending and
 // receiving messages from socket.io
 app.use(express.static(path.resolve(__dirname, "public")));
-
-// Socket.io connection event
-const io = setupSocketIO(server);
 
 // Start the HTTP server on the specified port
 server.listen(PORT, () => {

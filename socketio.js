@@ -3,7 +3,7 @@ const socketIO = require("socket.io");
 module.exports = (server) => {
   const io = socketIO(server, {
     cors: {
-      origin: "*", // Allow connections from any origin for this example (you might want to restrict this in a production environment)
+      origin: "*", // Allow connections from any origin
     },
   });
 

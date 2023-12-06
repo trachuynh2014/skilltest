@@ -19,8 +19,8 @@ Follow these steps to set up the project locally:
 ### Clone the Repository:
 
 ```bash
-git clone <repository-url>
-cd idea-theorem-skilltest
+git clone git@github.com:trachuynh2014/skilltest.git
+cd skilltest
 ```
 
 ### Environment Variables:

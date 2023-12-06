@@ -1,0 +1,47 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.IO Chat Client</title>
+  </head>
+  <body>
+    <!-- Container for chat messages -->
+    <ul id="messages"></ul>
+
+    <!-- Form for sending chat messages -->
+    <form id="form" action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+    <!-- Include socket.io-client -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Socket.IO client script (this connects to the server) -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      $(function () {
+        // Create a Socket.IO instance
+        const socket = io();
+
+        // Handle form submission to send chat messages
+        $("form").submit(function (e) {
+          e.preventDefault();
+          // Emit a 'chat message' event with the entered message
+          socket.emit("chat message", $("#m").val());
+          // Clear the input field
+          $("#m").val("");
+          return false;
+        });
+
+        // Listen for incoming 'chat message' events and display messages
+        socket.on("chat message", function (msg) {
+          // Append the received message to the messages list
+          $("#messages").append($("<li>").text(msg));
+        });
+      });
+    </script>
+  </body>
+</html>
